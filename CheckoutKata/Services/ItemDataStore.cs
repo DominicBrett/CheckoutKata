@@ -17,6 +17,18 @@ namespace CheckoutKata.Services
             {"D", new Item(){Sku = "D",Price=15} }
         };
 
+        public void AddOrUpdateItemPrice(string sku, int price)
+        {
+            if (_items.ContainsKey(sku))
+            {
+                _items[sku].Price = price;
+            }
+            else
+            {
+                _items.Add(sku, new Item() { Sku = sku, Price = price });
+            }
+        }
+
         // What would we like to do if we don't have a item in our pricestore
         public Item GetItemItem(string sku)
         {

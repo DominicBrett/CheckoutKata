@@ -19,14 +19,14 @@ namespace CheckoutKata.Tests
         }
 
         [Fact]
-        public void AddOrUpdateItem_ShouldAddANewItem_IfItDosentAlreadyExsistInTheDataStore()
+        public void AddOrUpdateItemPrice_ShouldAddANewItem_IfItDosentAlreadyExsistInTheDataStore()
         {
             // Arrange
             var expectedItemSku = "E";
             var expectedItemPrice = 500;
             
             // Act
-            _itemDataStore.AddOrUpdateItem(expectedItemSku, expectedItemPrice);
+            _itemDataStore.AddOrUpdateItemPrice(expectedItemSku, expectedItemPrice);
 
             // Assert
             var item = _itemDataStore.GetItemItem(expectedItemSku);
@@ -35,14 +35,14 @@ namespace CheckoutKata.Tests
         }
 
         [Fact]
-        public void AddOrUpdateItem_ShouldUpdateExsistingItem_IfItAlreadyExsistInTheDataStore()
+        public void AddOrUpdateItemPrice_ShouldUpdateExsistingItem_IfItAlreadyExsistInTheDataStore()
         {
             // Arrange
             var expectedItemSku = "A";
             var expectedItemPrice = 999;
 
             // Act
-            _itemDataStore.AddOrUpdateItem(expectedItemSku, expectedItemPrice);
+            _itemDataStore.AddOrUpdateItemPrice(expectedItemSku, expectedItemPrice);
 
             // Assert
             var item = _itemDataStore.GetItemItem(expectedItemSku);
