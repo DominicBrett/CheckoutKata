@@ -1,3 +1,4 @@
+using CheckoutKata.Entities;
 using CheckoutKata.Services;
 
 namespace CheckoutKata.Tests
@@ -48,6 +49,37 @@ namespace CheckoutKata.Tests
             var item = _itemDataStore.GetItemItem(expectedItemSku);
             Assert.Equal(expectedItemPrice, item.Price);
             Assert.Equal(expectedItemSku, item.Sku);
+        }
+
+        [Fact]
+        public void AddOrUpdateItem_ShouldAddANewItem_IfItDosentAlreadyExsistInTheDataStore()
+        {
+            // Arrange
+            var expectedItem = new Item() { Price = 1, Sku = "D", Promotion = new Promotion() { Price = 1, QuantityRequirement = 1 } };
+
+            // Act
+            _itemDataStore.AddOrUpdateItem(expectedItem);
+
+            // Assert
+            var item = _itemDataStore.GetItemItem(expectedItem.Sku);
+            Assert.Equal(expectedItem.Price, item.Price);
+            Assert.Equal(expectedItem.Sku, item.Sku);
+            Assert.Equal(expectedItem.Promotion, item.Promotion);
+        }
+        [Fact]
+        public void AddOrUpdateItem_ShouldUpdateExsistingItem_IfItAlreadyExsistInTheDataStore()
+        {
+            // Arrange
+            var expectedItem = new Item() { Price = 1, Sku = "D", Promotion = new Promotion() { Price = 1, QuantityRequirement = 1 } };
+
+            // Act
+            _itemDataStore.AddOrUpdateItem(expectedItem);
+
+            // Assert
+            var item = _itemDataStore.GetItemItem(expectedItem.Sku);
+            Assert.Equal(expectedItem.Price, item.Price);
+            Assert.Equal(expectedItem.Sku, item.Sku);
+            Assert.Equal(expectedItem.Promotion, item.Promotion);
         }
     }
 }
