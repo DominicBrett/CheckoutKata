@@ -70,7 +70,7 @@ namespace CheckoutKata.Tests
         public void AddOrUpdateItem_ShouldUpdateExsistingItem_IfItAlreadyExsistInTheDataStore()
         {
             // Arrange
-            var expectedItem = new Item() { Price = 1, Sku = "D", Promotion = new Promotion() { Price = 1, QuantityRequirement = 1 } };
+            var expectedItem = new Item() { Price = 1, Sku = "A", Promotion = new Promotion() { Price = 1, QuantityRequirement = 1 } };
 
             // Act
             _itemDataStore.AddOrUpdateItem(expectedItem);

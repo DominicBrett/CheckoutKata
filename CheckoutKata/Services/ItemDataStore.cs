@@ -1,6 +1,7 @@
 ﻿using CheckoutKata.Entities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,19 @@ namespace CheckoutKata.Services
             {"C", new Item(){Sku = "C",Price=20 } },
             {"D", new Item(){Sku = "D",Price=15} }
         };
+
+        public void AddOrUpdateItem(Item item)
+        {
+            var sku = item.Sku;
+            if (_items.ContainsKey(sku))
+            {
+                _items[sku] = item;
+            }
+            else
+            {
+                _items.Add(sku, item);
+            }
+        }
 
         public void AddOrUpdateItemPrice(string sku, int price)
         {
