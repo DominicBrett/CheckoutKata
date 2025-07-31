@@ -40,7 +40,9 @@ namespace CheckoutKata.Services
                 else
                 {
                     var dealQuantity = item.Quantity / item.Promotion.QuantityRequirement;
+                    var remainderQuantity = item.Quantity % item.Promotion.QuantityRequirement;
                     totalPrice += dealQuantity * item.Promotion.Price;
+                    totalPrice += remainderQuantity * item.Price;
                 }
             }
             return totalPrice;
