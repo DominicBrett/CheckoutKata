@@ -111,5 +111,31 @@ namespace CheckoutKata.Tests
             // Assert
             Assert.Equal(210, totalPrice);
         }
+
+        [Fact]
+        public void GetTotalPrice_ShouldReturnCorrectPrice_IfPromotionsArePresent_AndMultipleDuplicatePromotionsAreTriggered()
+        {
+            // Arrange
+            var checkout = new Checkout();
+            checkout.Scan("A");
+            checkout.Scan("A");
+            checkout.Scan("A");
+            checkout.Scan("A");
+            checkout.Scan("A");
+            checkout.Scan("A");
+            checkout.Scan("A");
+            checkout.Scan("A");
+            checkout.Scan("B");
+            checkout.Scan("B");
+            checkout.Scan("B");
+            checkout.Scan("C");
+            checkout.Scan("D");
+
+            // Act
+            var totalPrice = checkout.GetTotalPrice();
+
+            // Assert
+            Assert.Equal(470, totalPrice);
+        }
     }
 }
