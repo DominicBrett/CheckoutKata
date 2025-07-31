@@ -17,5 +17,37 @@ namespace CheckoutKata.Tests
             var actualPrice = _itemDataStore.GetItemItem(sku);
             Assert.Equal(expectedPrice, actualPrice.Price);
         }
+
+        [Fact]
+        public void AddOrUpdateItem_ShouldAddANewItem_IfItDosentAlreadyExsistInTheDataStore()
+        {
+            // Arrange
+            var expectedItemSku = "E";
+            var expectedItemPrice = 500;
+            
+            // Act
+            _itemDataStore.AddOrUpdateItem(expectedItemSku, expectedItemPrice);
+
+            // Assert
+            var item = _itemDataStore.GetItemItem(expectedItemSku);
+            Assert.Equal(expectedItemPrice, item.Price);
+            Assert.Equal(expectedItemSku, item.Sku);
+        }
+
+        [Fact]
+        public void AddOrUpdateItem_ShouldUpdateExsistingItem_IfItAlreadyExsistInTheDataStore()
+        {
+            // Arrange
+            var expectedItemSku = "A";
+            var expectedItemPrice = 999;
+
+            // Act
+            _itemDataStore.AddOrUpdateItem(expectedItemSku, expectedItemPrice);
+
+            // Assert
+            var item = _itemDataStore.GetItemItem(expectedItemSku);
+            Assert.Equal(expectedItemPrice, item.Price);
+            Assert.Equal(expectedItemSku, item.Sku);
+        }
     }
 }

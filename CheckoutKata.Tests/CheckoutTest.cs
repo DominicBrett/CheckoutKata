@@ -83,6 +83,19 @@ namespace CheckoutKata.Tests
         }
 
         [Fact]
+        public void GetTotalPrice_ShouldReturnZeroWhenNoItemsAreScanned()
+        {
+            // Arrange
+            var checkout = new Checkout();
+
+            // Act
+            var totalPrice = checkout.GetTotalPrice();
+
+            // Assert
+            Assert.Equal(0, totalPrice);
+        }
+
+        [Fact]
         public void GetTotalPrice_ShouldReturnCorrectPrice()
         {
             // Arrange

@@ -21,7 +21,6 @@ namespace CheckoutKata.Services
             } 
             else
             {
-                // What should we do if the item is not valid
                 try
                 {
                     var item = _store.GetItemItem(sku);
