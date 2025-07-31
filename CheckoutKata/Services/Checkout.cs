@@ -10,7 +10,7 @@ namespace CheckoutKata.Services
 {
     public class Checkout : ICheckout
     {
-        private readonly Dictionary<string, BasketItem> _basket = [];
+        private readonly Dictionary<string, Item> _basket = [];
         private readonly ItemDataStore _store = new ItemDataStore();
         public void Scan(string item)
         {
@@ -22,7 +22,7 @@ namespace CheckoutKata.Services
             {
                 // What should we do if the item is not valid
                 var price = _store.GetItemPrice(item);
-                _basket.Add(item, new BasketItem() { Sku = item, Price = price, Quantity = 1 });
+                _basket.Add(item, new Item() { Sku = item, Price = price, Quantity = 1 });
             }
         }
 
@@ -38,7 +38,7 @@ namespace CheckoutKata.Services
             return totalPrice;
         }
 
-        public BasketItem GetItemFromBasket(string item)
+        public Item GetItemFromBasket(string item)
         {
             return _basket[item];
         }
