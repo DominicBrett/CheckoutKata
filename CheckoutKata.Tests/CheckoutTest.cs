@@ -74,6 +74,12 @@ namespace CheckoutKata.Tests
             Assert.Equal(2, item2.Quantity);
 
         }
+        [Fact]
+        public void Scan_ItemShouldThrowItemNotFoundException_IfSkuOfItemScannedIsInvalid()
+        {
+            var checkout = new Checkout();
+            Assert.Throws<ItemNotFoundException>(() => checkout.Scan("INVALID_SKU"));
+        }
 
         [Fact]
         public void GetTotalPrice_ShouldReturnCorrectPrice()
