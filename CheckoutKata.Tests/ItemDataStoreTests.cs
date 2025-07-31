@@ -1,8 +1,10 @@
+using CheckoutKata.Services;
+
 namespace CheckoutKata.Tests
 {
     public class ItemDataStoreTests
     {
-        private const _itemDataStore = ItemDataStoreFactory.CreateDataStoreWithItems();
+        private readonly ItemDataStore _itemDataStore = new ItemDataStore();
 
 
         [Theory]
@@ -10,9 +12,9 @@ namespace CheckoutKata.Tests
         [InlineData("B", 30)]
         [InlineData("C", 20)]
         [InlineData("D", 15)]
-        public void ItemDataStore_GetPrice_ShouldReturnCorrectPrice(string sku, int expectedPrice)
+        public void ItemDataStore_GetItemPrice_ShouldReturnCorrectPrice(string sku, int expectedPrice)
         {
-            var actualPrice = _itemDataStore.GetPrice(sku);
+            var actualPrice = _itemDataStore.GetItemPrice(sku);
             Assert.Equal(expectedPrice, actualPrice);
         }
     }
