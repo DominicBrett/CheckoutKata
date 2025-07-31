@@ -28,7 +28,14 @@ namespace CheckoutKata.Services
 
         public int GetTotalPrice()
         {
-            throw new NotImplementedException();
+            var totalPrice = 0;
+
+            foreach (var bItem in _basket)
+            {
+                var item = bItem.Value;
+                totalPrice += item.Price * item.Quantity;
+            }
+            return totalPrice;
         }
 
         public BasketItem GetItemFromBasket(string item)
