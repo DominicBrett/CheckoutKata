@@ -12,7 +12,7 @@ namespace CheckoutKata.Tests
         [InlineData("B", 30)]
         [InlineData("C", 20)]
         [InlineData("D", 15)]
-        public void ItemDataStore_GetItemPrice_ShouldReturnCorrectPrice(string sku, int expectedPrice)
+        public void GetItemPrice_ShouldReturnCorrectPrice(string sku, int expectedPrice)
         {
             var actualPrice = _itemDataStore.GetItemPrice(sku);
             Assert.Equal(expectedPrice, actualPrice);
