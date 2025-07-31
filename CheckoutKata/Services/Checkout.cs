@@ -1,5 +1,6 @@
 ﻿
 using CheckoutKata.Entities;
+using CheckoutKata.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,16 @@ namespace CheckoutKata.Services
             else
             {
                 // What should we do if the item is not valid
-                var item = _store.GetItemItem(sku);
-                _basket.Add(sku, item);
+                try
+                {
+                    var item = _store.GetItemItem(sku);
+                    _basket.Add(sku, item);
+                }
+                catch (KeyNotFoundException ex)
+                {
+                    throw new ItemNotFoundException($"{sku} is not found in the item store");
+                }
+ 
             }
         }
 

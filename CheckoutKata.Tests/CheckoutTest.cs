@@ -1,4 +1,5 @@
-﻿using CheckoutKata.Services;
+﻿using CheckoutKata.Exceptions;
+using CheckoutKata.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
