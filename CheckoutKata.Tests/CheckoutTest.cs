@@ -74,5 +74,23 @@ namespace CheckoutKata.Tests
             Assert.Equal(2, item2.Quantity);
 
         }
+
+        [Fact]
+        public void GetTotalPrice_ShouldReturnCorrectPrice()
+        {
+            // Arrange
+            var checkout = new Checkout();
+            checkout.Scan("A");
+            checkout.Scan("B");
+            checkout.Scan("C");
+            checkout.Scan("D");
+
+
+            // Act
+            var totalPrice = checkout.GetTotalPrice();
+
+            // Assert
+            Assert.Equal(115, totalPrice);
+        }
     }
 }
