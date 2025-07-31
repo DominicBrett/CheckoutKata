@@ -12,17 +12,17 @@ namespace CheckoutKata.Services
     {
         private readonly Dictionary<string, Item> _basket = [];
         private readonly ItemDataStore _store = new ItemDataStore();
-        public void Scan(string item)
+        public void Scan(string sku)
         {
-            if(_basket.TryGetValue(item, out var basket))
+            if(_basket.TryGetValue(sku, out var basket))
             {
-                _basket[item].Quantity++;
+                _basket[sku].Quantity++;
             } 
             else
             {
                 // What should we do if the item is not valid
-                var price = _store.GetItemPrice(item);
-                _basket.Add(item, new Item() { Sku = item, Price = price, Quantity = 1 });
+                var item = _store.GetItemItem(sku);
+                _basket.Add(sku, item);
             }
         }
 
@@ -33,7 +33,15 @@ namespace CheckoutKata.Services
             foreach (var bItem in _basket)
             {
                 var item = bItem.Value;
-                totalPrice += item.Price * item.Quantity;
+                if (item.Promotion == null || item.Quantity < item.Promotion.QuantityRequirement)
+                {
+                    totalPrice += item.Price * item.Quantity;
+                }
+                else
+                {
+                    var dealQuantity = item.Quantity / item.Promotion.QuantityRequirement;
+                    totalPrice += dealQuantity * item.Promotion.Price;
+                }
             }
             return totalPrice;
         }

@@ -11,16 +11,16 @@ namespace CheckoutKata.Services
     {
         private readonly new Dictionary<string, Item> _items = new Dictionary<string, Item>
         {
-            {"A", new Item(){Sku = "A", Price = 50} },
-            {"B", new Item(){Sku = "B",Price=30  } },
+            {"A", new Item(){Sku = "A", Price = 50, Promotion = new Promotion() {QuantityRequirement = 3, Price = 130} } },
+            {"B", new Item(){Sku = "B",Price=30, Promotion = new Promotion() {QuantityRequirement = 2, Price = 45}  } },
             {"C", new Item(){Sku = "C",Price=20 } },
             {"D", new Item(){Sku = "D",Price=15} }
         };
 
         // What would we like to do if we don't have a item in our pricestore
-        public int GetItemPrice(string sku)
+        public Item GetItemItem(string sku)
         {
-            return _items[sku].Price;
+            return _items[sku];
         }
     }
 }

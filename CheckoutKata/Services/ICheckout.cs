@@ -9,7 +9,7 @@ namespace CheckoutKata.Services
 {
     public interface ICheckout
     {
-        Item GetItemFromBasket(string item);
+        Item GetItemFromBasket(string sku);
         void Scan(string item);
         int GetTotalPrice();
     }
