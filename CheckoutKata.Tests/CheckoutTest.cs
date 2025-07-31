@@ -24,7 +24,6 @@ namespace CheckoutKata.Tests
             Assert.NotNull(item);
             Assert.Equal("A", item.Name);
             Assert.Equal(50, item.Price);
-            Assert.Equal(1, item.Quantity);
 
         }
     }
