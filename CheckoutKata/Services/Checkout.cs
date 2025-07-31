@@ -1,4 +1,5 @@
 ﻿
+using CheckoutKata.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,30 @@ namespace CheckoutKata.Services
 {
     public class Checkout : ICheckout
     {
-        private readonly 
+        private readonly Dictionary<string, BasketItem> _basket = [];
+        private readonly ItemDataStore _store = new ItemDataStore();
         public void Scan(string item)
         {
-            throw new NotImplementedException();
+            if(_basket.TryGetValue(item, out var basket))
+            {
+                _basket[item].Quantity++;
+            } 
+            else
+            {
+                // What should we do if the item is not valid
+                var price = _store.GetItemPrice(item);
+                _basket.Add(item, new BasketItem() { Sku = item, Price = price, Quantity = 1 });
+            }
         }
 
         public int GetTotalPrice()
         {
             throw new NotImplementedException();
+        }
+
+        public BasketItem GetItemFromBasket(string item)
+        {
+            return _basket[item];
         }
     }
 }

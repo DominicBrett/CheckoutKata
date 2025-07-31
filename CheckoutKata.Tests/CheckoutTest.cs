@@ -22,8 +22,9 @@ namespace CheckoutKata.Tests
 
             // Assert
             Assert.NotNull(item);
-            Assert.Equal("A", item.Name);
+            Assert.Equal("A", item.Sku);
             Assert.Equal(50, item.Price);
+            Assert.Equal(1, item.Quantity);
 
         }
     }

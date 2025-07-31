@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CheckoutKata.Entities
 {
-    public class Item
+    public class ItemData
     {
         public int Price { get; set; }
     }

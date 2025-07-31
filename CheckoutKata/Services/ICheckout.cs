@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CheckoutKata.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace CheckoutKata.Services
 {
     public interface ICheckout
     {
+        BasketItem GetItemFromBasket(string item);
         void Scan(string item);
         int GetTotalPrice();
     }
